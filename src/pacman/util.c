@@ -1979,3 +1979,67 @@ char *resolve_path(const char *path, const char *option)
 
 	return resolved;
 }
+
+#include <sys/stat.h>
+
+alpm_list_t *pupman_load_tracked(void) {
+	alpm_list_t *tracked = NULL;
+	FILE *f = fopen("/var/lib/pupman/installed.db", "r");
+	if(f) {
+		char line[256];
+		while(fgets(line, sizeof(line), f)) {
+			line[strcspn(line, "\r\n")] = '\0';
+			if(strlen(line) > 0) {
+				tracked = alpm_list_add(tracked, strdup(line));
+			}
+		}
+		fclose(f);
+	}
+	return tracked;
+}
+
+void pupman_record_transaction(alpm_handle_t *handle) {
+	alpm_list_t *i;
+	alpm_list_t *add_pkgs;
+	alpm_list_t *rem_pkgs;
+	alpm_list_t *tracked = NULL;
+	FILE *f;
+
+	if(!handle) return;
+
+	add_pkgs = alpm_trans_get_add(handle);
+	rem_pkgs = alpm_trans_get_remove(handle);
+
+	if(!add_pkgs && !rem_pkgs) return;
+
+	mkdir("/var/lib/pupman", 0755);
+
+	tracked = pupman_load_tracked();
+
+	for(i = add_pkgs; i; i = alpm_list_next(i)) {
+		alpm_pkg_t *pkg = i->data;
+		const char *pkgname = alpm_pkg_get_name(pkg);
+		if(!alpm_list_find_str(tracked, pkgname)) {
+			tracked = alpm_list_add(tracked, strdup(pkgname));
+		}
+	}
+
+	for(i = rem_pkgs; i; i = alpm_list_next(i)) {
+		alpm_pkg_t *pkg = i->data;
+		const char *pkgname = alpm_pkg_get_name(pkg);
+		char *found_data = NULL;
+		tracked = alpm_list_remove_str(tracked, pkgname, &found_data);
+		if(found_data) {
+			free(found_data);
+		}
+	}
+
+	f = fopen("/var/lib/pupman/installed.db", "w");
+	if(f) {
+		for(i = tracked; i; i = alpm_list_next(i)) {
+			fprintf(f, "%s\n", (char *)i->data);
+		}
+		fclose(f);
+	}
+	FREELIST(tracked);
+}

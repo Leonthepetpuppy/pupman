@@ -159,27 +159,13 @@ static void fill_progress(const int percent, const int proglen)
 
 	if(hashlen > 0) {
 		fputs(" [", stdout);
-		for(i = hashlen; i > 0; --i) {
-			/* if special progress bar enabled */
-			if(config->chomp) {
-				if(i > hashlen - hash) {
-					putchar('-');
-				} else if(i == hashlen - hash) {
-					if(percent % 2 == 0) {
-						fputs("\033[1;33mC\033[m", stdout);
-					} else {
-						fputs("\033[1;33mc\033[m", stdout);
-					}
-				} else if(i % 3 == 0) {
-					fputs("\033[0;37mo\033[m", stdout);
-				} else {
-					fputs("\033[0;37m \033[m", stdout);
-				}
-			} /* else regular progress bar */
-			else if(i > hashlen - hash) {
-				putchar('#');
+		const char *text = "Woof ";
+		int text_len = 5;
+		for(i = 0; i < hashlen; i++) {
+			if(i < hash) {
+				putchar(text[i % text_len]);
 			} else {
-				putchar('-');
+				putchar('~');
 			}
 		}
 		putchar(']');
@@ -240,7 +226,7 @@ void cb_event(void *ctx, alpm_event_t *event)
 			}
 			break;
 		case ALPM_EVENT_CHECKDEPS_START:
-			printf(_("checking dependencies...\n"));
+			printf(_("sniffing out dependencies...\n"));
 			break;
 		case ALPM_EVENT_FILECONFLICTS_START:
 			if(config->noprogressbar) {
@@ -248,13 +234,13 @@ void cb_event(void *ctx, alpm_event_t *event)
 			}
 			break;
 		case ALPM_EVENT_RESOLVEDEPS_START:
-			printf(_("resolving dependencies...\n"));
+			printf(_("following the scent trail (resolving deps)...\n"));
 			break;
 		case ALPM_EVENT_INTERCONFLICTS_START:
-			printf(_("looking for conflicting packages...\n"));
+			printf(_("checking for pack rivalries (conflicts)...\n"));
 			break;
 		case ALPM_EVENT_TRANSACTION_START:
-			colon_printf(_("Processing package changes...\n"));
+			colon_printf(_("Fetching and arranging packages...\n"));
 			break;
 		case ALPM_EVENT_PACKAGE_OPERATION_START:
 			if(config->noprogressbar) {
@@ -605,34 +591,34 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 	/* set text of message to display */
 	switch(event) {
 		case ALPM_PROGRESS_ADD_START:
-			opr = _("installing");
+			opr = _("fetching & adopting");
 			break;
 		case ALPM_PROGRESS_UPGRADE_START:
-			opr = _("upgrading");
+			opr = _("leveling up good boy");
 			break;
 		case ALPM_PROGRESS_DOWNGRADE_START:
-			opr = _("downgrading");
+			opr = _("taking a step back");
 			break;
 		case ALPM_PROGRESS_REINSTALL_START:
-			opr = _("reinstalling");
+			opr = _("fetching treat again");
 			break;
 		case ALPM_PROGRESS_REMOVE_START:
-			opr = _("removing");
+			opr = _("burying away");
 			break;
 		case ALPM_PROGRESS_CONFLICTS_START:
-			opr = _("checking for file conflicts");
+			opr = _("sniffing out territory disputes");
 			break;
 		case ALPM_PROGRESS_DISKSPACE_START:
-			opr = _("checking available disk space");
+			opr = _("measuring backyard yard space");
 			break;
 		case ALPM_PROGRESS_INTEGRITY_START:
-			opr = _("checking package integrity");
+			opr = _("inspecting treats for quality");
 			break;
 		case ALPM_PROGRESS_KEYRING_START:
-			opr = _("checking keys in keyring");
+			opr = _("inspecting collar tags");
 			break;
 		case ALPM_PROGRESS_LOAD_START:
-			opr = _("loading package files");
+			opr = _("carrying packages home");
 			break;
 		default:
 			return;

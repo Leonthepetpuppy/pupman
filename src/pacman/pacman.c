@@ -1,6 +1,7 @@
 /*
- *  pacman.c
+ *  pupman.c (modified from pacman.c)
  *
+ *  Copyright (c) 2026 Leon <leonthepetpuppy@gmail.com>
  *  Copyright (c) 2006-2025 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
@@ -246,13 +247,11 @@ static void usage(int op, const char * const myname)
 static void version(void)
 {
 	printf("\n");
-	printf(" .--.                  Pacman v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
-	printf("/ _.-' .-.  .-.  .-.   Copyright (C) 2006-2025 Pacman Development Team\n");
-	printf("\\  '-. '-'  '-'  '-'   Copyright (C) 2002-2006 Judd Vinet\n");
-	printf(" '--'\n");
-	printf(_("                       This program may be freely redistributed under\n"
-	         "                       the terms of the GNU General Public License.\n"));
-	printf("\n");
+	printf("  / \\__                Pupman v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
+	printf(" (    @\\___            Copyright (C) 2026 Leon\n");
+	printf(" /         O           Based on Pacman by Judd Vinet & Dev Team\n");
+	printf("/   (_____/            This program may be freely redistributed under\n");
+	printf("/_____/   U            the terms of the GNU General Public License.\n\n");
 }
 
 /** Sets up gettext localization. Safe to call multiple times.

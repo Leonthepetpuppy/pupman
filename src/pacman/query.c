@@ -303,6 +303,12 @@ static int filter(alpm_pkg_t *pkg)
 
 static int display(alpm_pkg_t *pkg)
 {
+	alpm_list_t *tracked = pupman_load_tracked();
+	int is_tracked = (alpm_list_find_str(tracked, alpm_pkg_get_name(pkg)) != NULL);
+	FREELIST(tracked);
+	if(!is_tracked) {
+		return 0;
+	}
 	int ret = 0;
 
 	if(config->op_q_info) {

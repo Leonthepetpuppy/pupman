@@ -845,6 +845,7 @@ int sync_prepare_execute(void)
 	}
 
 	multibar_move_completed_up(true);
+	pupman_record_transaction(config->handle);
 	if(alpm_trans_commit(config->handle, &data) == -1) {
 		alpm_errno_t err = alpm_errno(config->handle);
 		pm_printf(ALPM_LOG_ERROR, _("failed to commit transaction (%s)\n"),

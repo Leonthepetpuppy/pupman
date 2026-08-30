@@ -165,6 +165,7 @@ int pacman_remove(alpm_list_t *targets)
 		goto cleanup;
 	}
 
+	pupman_record_transaction(config->handle);
 	if(alpm_trans_commit(config->handle, &data) == -1) {
 		pm_printf(ALPM_LOG_ERROR, _("failed to commit transaction (%s)\n"),
 		        alpm_strerror(alpm_errno(config->handle)));
