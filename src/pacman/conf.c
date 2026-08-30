@@ -1,6 +1,7 @@
 /*
  *  conf.c
  *
+ *  Copyright (c) 2026 Leon <leonthepetpuppy@gmail.com>
  *  Copyright (c) 2006-2025 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
@@ -247,7 +248,7 @@ static int systemvp(const char *file, char *const argv[])
 		if (config->sandboxuser) {
 			ret = alpm_sandbox_setup_child(config->handle, config->sandboxuser, NULL, false);
 			if (ret != 0) {
-				pm_printf(ALPM_LOG_ERROR, _("switching to sandbox user '%s' failed!\n"), config->sandboxuser);
+				pm_printf(ALPM_LOG_ERROR, _("switching to sandpup user '%s' failed!\n"), config->sandboxuser);
 				_Exit(ret);
 			}
 		}
@@ -358,7 +359,7 @@ static int download_with_xfercommand(void *ctx, const char *url,
 	if(config->logmask & ALPM_LOG_DEBUG) {
 		char *cmd = arg_to_string(config->xfercommand_argc, (char**)argv);
 		if(cmd) {
-			pm_printf(ALPM_LOG_DEBUG, "running command: %s\n", cmd);
+			pm_printf(ALPM_LOG_DEBUG, "pup running command: %s\n", cmd);
 			free(cmd);
 		}
 	}

@@ -1,6 +1,7 @@
 /*
  *  conf.h
  *
+ *  Copyright (c) 2026 Leon <leonthepetpuppy@gmail.com>
  *  Copyright (c) 2006-2025 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
