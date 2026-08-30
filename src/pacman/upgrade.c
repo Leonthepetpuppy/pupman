@@ -59,9 +59,9 @@ static int load_packages(alpm_list_t *targets, int siglevel)
 }
 
 /**
- * @brief Upgrade a specified list of packages.
+ * @brief Upgrade a specified list of puppies.
  *
- * @param targets a list of packages (as strings) to upgrade
+ * @param targets a list of puppies (as strings) to upgrade
  *
  * @return 0 on success, 1 on failure
  */
@@ -100,7 +100,7 @@ int pacman_upgrade(alpm_list_t *targets)
 	}
 
 	if(!config->print) {
-		printf(_("loading packages...\n"));
+		printf(_("loading puppies...\n"));
 	}
 	retval |= load_packages(local_targets, alpm_option_get_local_file_siglevel(config->handle));
 	retval |= load_packages(fetched_files, alpm_option_get_remote_file_siglevel(config->handle));

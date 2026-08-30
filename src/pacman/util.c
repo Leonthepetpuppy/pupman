@@ -104,7 +104,7 @@ void trans_init_error(void)
 		pm_printf(ALPM_LOG_ERROR, _("could not lock database: %s\n"),
 					strerror(errno));
 		if(access(lockfile, F_OK) == 0) {
-			fprintf(stderr, _("  if you're sure a package manager is not already\n"
+			fprintf(stderr, _("  if you're sure a puppy manager is not already\n"
 						"  running, you can remove %s\n"), lockfile);
 		}
 	}
@@ -146,7 +146,7 @@ int check_syncdbs(size_t need_repos, int check_valid)
 	alpm_list_t *sync_dbs = alpm_get_syncdbs(config->handle);
 
 	if(need_repos && sync_dbs == NULL) {
-		pm_printf(ALPM_LOG_ERROR, _("no usable package repositories configured.\n"));
+		pm_printf(ALPM_LOG_ERROR, _("no usable puppy repositories configured.\n"));
 		return 1;
 	}
 
@@ -886,7 +886,7 @@ static alpm_list_t *create_verbose_header(size_t count)
 	alpm_list_t *ret = NULL;
 
 	char *header;
-	pm_asprintf(&header, "%s (%zu)", _("Package"), count);
+	pm_asprintf(&header, "%s (%zu)", _("Puppy"), count);
 
 	add_table_cell(&ret, header, CELL_TITLE | CELL_FREE);
 	add_table_cell(&ret, _("Old Version"), CELL_TITLE);
@@ -897,7 +897,7 @@ static alpm_list_t *create_verbose_header(size_t count)
 	return ret;
 }
 
-/* returns package info as list of strings */
+/* returns puppy info as list of strings */
 static alpm_list_t *create_verbose_row(pm_target_t *target)
 {
 	char *str;
@@ -906,7 +906,7 @@ static alpm_list_t *create_verbose_row(pm_target_t *target)
 	const char *label;
 	alpm_list_t *ret = NULL;
 
-	/* a row consists of the package name, */
+	/* a row consists of the puppy name, */
 	if(target->install) {
 		const alpm_db_t *db = alpm_pkg_get_db(target->install);
 		if(db) {
@@ -959,7 +959,7 @@ static void _display_targets(alpm_list_t *targets, int verbose)
 		return;
 	}
 
-	/* gather package info */
+	/* gather puppy info */
 	for(i = targets; i; i = alpm_list_next(i)) {
 		pm_target_t *target = i->data;
 
@@ -968,7 +968,7 @@ static void _display_targets(alpm_list_t *targets, int verbose)
 			isize += alpm_pkg_get_isize(target->install);
 		}
 		if(target->remove) {
-			/* add up size of all removed packages */
+			/* add up size of all removed puppies */
 			rsize += alpm_pkg_get_isize(target->remove);
 		}
 	}
@@ -995,7 +995,7 @@ static void _display_targets(alpm_list_t *targets, int verbose)
 	}
 
 	/* print to screen */
-	pm_asprintf(&str, "%s (%zu)", _("Packages"), alpm_list_count(targets));
+	pm_asprintf(&str, "%s (%zu)", _("puppies"), alpm_list_count(targets));
 	printf("\n");
 
 	cols = getcols();
@@ -1108,7 +1108,7 @@ static char *pkg_get_location(alpm_pkg_t *pkg)
 	switch(alpm_pkg_get_origin(pkg)) {
 		case ALPM_PKG_FROM_SYNCDB:
 			if(alpm_pkg_download_size(pkg) == 0) {
-				/* file is already in the package cache */
+				/* file is already in the puppy cache */
 				alpm_list_t *i;
 				const char *pkgfile = alpm_pkg_get_filename(pkg);
 				char path[PATH_MAX];
@@ -1241,7 +1241,7 @@ void print_packages(const alpm_list_t *packages)
 		PRINT_FORMAT_STRING(temp, "%h", alpm_pkg_get_sha256sum)
 		/* %n : pkgname */
 		PRINT_FORMAT_STRING(temp, "%n", alpm_pkg_get_name)
-		/* %p : packager */
+		/* %p : puppier */
 		PRINT_FORMAT_STRING(temp, "%p", alpm_pkg_get_packager)
 		/* %v : pkgver */
 		PRINT_FORMAT_STRING(temp, "%v", alpm_pkg_get_version)

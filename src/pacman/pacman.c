@@ -123,53 +123,53 @@ static void usage(int op, const char * const myname)
 		if(op == PM_OP_REMOVE) {
 			printf("%s:  %s {-R --remove} [%s] <%s>\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
-			addlist(_("  -c, --cascade        remove packages and all packages that depend on them\n"));
+			addlist(_("  -c, --cascade        remove puppies and all puppies that depend on them\n"));
 			addlist(_("  -n, --nosave         remove configuration files\n"));
 			addlist(_("  -s, --recursive      remove unnecessary dependencies\n"
 			          "                       (-ss includes explicitly installed dependencies)\n"));
-			addlist(_("  -u, --unneeded       remove unneeded packages\n"));
+			addlist(_("  -u, --unneeded       remove unneeded puppies\n"));
 		} else if(op == PM_OP_UPGRADE) {
 			printf("%s:  %s {-U --upgrade} [%s] <%s>\n", str_usg, myname, str_opt, str_file);
-			addlist(_("      --needed         do not reinstall up to date packages\n"));
+			addlist(_("      --needed         do not reinstall up to date puppies\n"));
 			printf("%s:\n", str_opt);
 		} else if(op == PM_OP_QUERY) {
 			printf("%s:  %s {-Q --query} [%s] [%s]\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
-			addlist(_("  -c, --changelog      view the changelog of a package\n"));
-			addlist(_("  -d, --deps           list packages installed as dependencies [filter]\n"));
-			addlist(_("  -e, --explicit       list packages explicitly installed [filter]\n"));
-			addlist(_("  -g, --groups         view all members of a package group\n"));
-			addlist(_("  -i, --info           view package information (-ii for backup files)\n"));
-			addlist(_("  -k, --check          check that package files exist (-kk for file properties)\n"));
-			addlist(_("  -l, --list           list the files owned by the queried package\n"));
-			addlist(_("  -m, --foreign        list installed packages not found in sync db(s) [filter]\n"));
-			addlist(_("  -n, --native         list installed packages only found in sync db(s) [filter]\n"));
-			addlist(_("  -o, --owns <file>    query the package that owns <file>\n"));
-			addlist(_("  -p, --file <package> query a package file instead of the database\n"));
+			addlist(_("  -c, --changelog      view the changelog of a puppy\n"));
+			addlist(_("  -d, --deps           list puppies installed as dependencies [filter]\n"));
+			addlist(_("  -e, --explicit       list puppies explicitly installed [filter]\n"));
+			addlist(_("  -g, --groups         view all members of a puppy group\n"));
+			addlist(_("  -i, --info           view puppy information (-ii for backup files)\n"));
+			addlist(_("  -k, --check          check that puppy files exist (-kk for file properties)\n"));
+			addlist(_("  -l, --list           list the files owned by the queried puppy\n"));
+			addlist(_("  -m, --foreign        list installed puppies not found in sync db(s) [filter]\n"));
+			addlist(_("  -n, --native         list installed puppies only found in sync db(s) [filter]\n"));
+			addlist(_("  -o, --owns <file>    query the puppy that owns <file>\n"));
+			addlist(_("  -p, --file <puppy> query a puppy file instead of the database\n"));
 			addlist(_("  -q, --quiet          show less information for query and search\n"));
-			addlist(_("  -s, --search <regex> search locally-installed packages for matching strings\n"));
-			addlist(_("  -t, --unrequired     list packages not (optionally) required by any\n"
-			          "                       package (-tt to ignore optdepends) [filter]\n"));
-			addlist(_("  -u, --upgrades       list outdated packages [filter]\n"));
+			addlist(_("  -s, --search <regex> search locally-installed puppies for matching strings\n"));
+			addlist(_("  -t, --unrequired     list puppies not (optionally) required by any\n"
+			          "                       puppy (-tt to ignore optdepends) [filter]\n"));
+			addlist(_("  -u, --upgrades       list outdated puppies [filter]\n"));
 		} else if(op == PM_OP_SYNC) {
 			printf("%s:  %s {-S --sync} [%s] [%s]\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
-			addlist(_("  -c, --clean          remove old packages from cache directory (-cc for all)\n"));
-			addlist(_("  -g, --groups         view all members of a package group\n"
+			addlist(_("  -c, --clean          remove old puppies from cache directory (-cc for all)\n"));
+			addlist(_("  -g, --groups         view all members of a puppy group\n"
 			          "                       (-gg to view all groups and members)\n"));
-			addlist(_("  -i, --info           view package information (-ii for extended information)\n"));
-			addlist(_("  -l, --list <repo>    view a list of packages in a repo\n"));
+			addlist(_("  -i, --info           view puppy information (-ii for extended information)\n"));
+			addlist(_("  -l, --list <repo>    view a list of puppies in a repo\n"));
 			addlist(_("  -q, --quiet          show less information for query and search\n"));
 			addlist(_("  -s, --search <regex> search remote repositories for matching strings\n"));
-			addlist(_("  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"));
-			addlist(_("  -y, --refresh        download fresh package databases from the server\n"
+			addlist(_("  -u, --sysupgrade     upgrade installed puppies (-uu enables downgrades)\n"));
+			addlist(_("  -y, --refresh        download fresh puppy databases from the server\n"
 			          "                       (-yy to force a refresh even if up to date)\n"));
-			addlist(_("      --needed         do not reinstall up to date packages\n"));
+			addlist(_("      --needed         do not reinstall up to date puppies\n"));
 		} else if(op == PM_OP_DATABASE) {
 			printf("%s:  %s {-D --database} <%s> <%s>\n", str_usg, myname, str_opt, str_pkg);
 			printf("%s:\n", str_opt);
-			addlist(_("      --asdeps         mark packages as non-explicitly installed\n"));
-			addlist(_("      --asexplicit     mark packages as explicitly installed\n"));
+			addlist(_("      --asdeps         mark puppies as non-explicitly installed\n"));
+			addlist(_("      --asexplicit     mark puppies as explicitly installed\n"));
 			addlist(_("  -k, --check          test local database for validity (-kk for sync databases)\n"));
 			addlist(_("  -q, --quiet          suppress output of success messages\n"));
 		} else if(op == PM_OP_DEPTEST) {
@@ -178,10 +178,10 @@ static void usage(int op, const char * const myname)
 		} else if(op == PM_OP_FILES) {
 			printf("%s:  %s {-F --files} [%s] [%s]\n", str_usg, myname, str_opt, str_file);
 			printf("%s:\n", str_opt);
-			addlist(_("  -l, --list           list the files owned by the queried package\n"));
+			addlist(_("  -l, --list           list the files owned by the queried puppy\n"));
 			addlist(_("  -q, --quiet          show less information for query and search\n"));
 			addlist(_("  -x, --regex          enable searching using regular expressions\n"));
-			addlist(_("  -y, --refresh        download fresh package databases from the server\n"
+			addlist(_("  -y, --refresh        download fresh puppy databases from the server\n"
 			          "                       (-yy to force a refresh even if up to date)\n"));
 			addlist(_("      --machinereadable\n"
 			          "                       produce machine-readable output\n"));
@@ -189,20 +189,20 @@ static void usage(int op, const char * const myname)
 		switch(op) {
 			case PM_OP_SYNC:
 			case PM_OP_UPGRADE:
-				addlist(_("  -w, --downloadonly   download packages but do not install/upgrade anything\n"));
+				addlist(_("  -w, --downloadonly   download puppies but do not install/upgrade anything\n"));
 				addlist(_("      --overwrite <glob>\n"
 				          "                       overwrite conflicting files (can be used more than once)\n"));
-				addlist(_("      --asdeps         install packages as non-explicitly installed\n"));
-				addlist(_("      --asexplicit     install packages as explicitly installed\n"));
-				addlist(_("      --ignore <pkg>   ignore a package upgrade (can be used more than once)\n"));
+				addlist(_("      --asdeps         install puppies as non-explicitly installed\n"));
+				addlist(_("      --asexplicit     install puppies as explicitly installed\n"));
+				addlist(_("      --ignore <pkg>   ignore a puppy upgrade (can be used more than once)\n"));
 				addlist(_("      --ignoregroup <grp>\n"
 				          "                       ignore a group upgrade (can be used more than once)\n"));
 				__attribute__((fallthrough));
 			case PM_OP_REMOVE:
 				addlist(_("  -d, --nodeps         skip dependency version checks (-dd to skip all checks)\n"));
-				addlist(_("      --assume-installed <package=version>\n"
-				          "                       add a virtual package to satisfy dependencies\n"));
-				addlist(_("      --dbonly         only modify database entries, not package files\n"));
+				addlist(_("      --assume-installed <puppy=version>\n"
+				          "                       add a virtual puppy to satisfy dependencies\n"));
+				addlist(_("      --dbonly         only modify database entries, not puppy files\n"));
 				addlist(_("      --noprogressbar  do not show a progress bar when downloading files\n"));
 				addlist(_("      --noscriptlet    do not execute the install scriptlet if one exists\n"));
 				addlist(_("  -p, --print          print the targets instead of performing the operation\n"));
@@ -216,7 +216,7 @@ static void usage(int op, const char * const myname)
 		addlist(_("  -v, --verbose        be verbose\n"));
 		addlist(_("      --arch <arch>    set an alternate architecture\n"));
 		addlist(_("      --sysroot        operate on a mounted guest system (root-only)\n"));
-		addlist(_("      --cachedir <dir> set an alternate package cache location\n"));
+		addlist(_("      --cachedir <dir> set an alternate puppy cache location\n"));
 		addlist(_("      --hookdir <dir>  set an alternate hook location\n"));
 		addlist(_("      --color <when>   colorize the output\n"));
 		addlist(_("      --config <path>  set an alternate configuration file\n"));

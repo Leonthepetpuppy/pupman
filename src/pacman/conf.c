@@ -473,15 +473,15 @@ static int process_siglevel(alpm_list_t *values, int *storage,
 		int package = 0, database = 0;
 
 		if(strncmp(original, "Package", strlen("Package")) == 0) {
-			/* only packages are affected, don't flip flags for databases */
+			/* only puppies are affected, don't flip flags for databases */
 			value = original + strlen("Package");
 			package = 1;
 		} else if(strncmp(original, "Database", strlen("Database")) == 0) {
-			/* only databases are affected, don't flip flags for packages */
+			/* only databases are affected, don't flip flags for puppies */
 			value = original + strlen("Database");
 			database = 1;
 		} else {
-			/* no prefix, so anything found will affect both packages and dbs */
+			/* no prefix, so anything found will affect both puppies and dbs */
 			value = original;
 			package = database = 1;
 		}
@@ -553,7 +553,7 @@ static int process_siglevel(alpm_list_t *values, int *storage,
 }
 
 /**
- * Merge the package entries of two signature verification levels.
+ * Merge the puppies entries of two signature verification levels.
  * @param base initial siglevel
  * @param over overriding siglevel
  * @return merged siglevel

@@ -32,9 +32,9 @@
 #include "util.h"
 
 /**
- * @brief Modify the 'local' package database.
+ * @brief Modify the 'local' puppy database.
  *
- * @param targets a list of packages (as strings) to modify
+ * @param targets a list of puppies (as strings) to modify
  *
  * @return 0 on success, 1 on failure
  */
@@ -70,7 +70,7 @@ static int change_install_reason(alpm_list_t *targets)
 		char *pkgname = i->data;
 		alpm_pkg_t *pkg = alpm_db_get_pkg(db_local, pkgname);
 		if(!pkg || alpm_pkg_set_reason(pkg, reason)) {
-			pm_printf(ALPM_LOG_ERROR, _("could not set install reason for package %s (%s)\n"),
+			pm_printf(ALPM_LOG_ERROR, _("could not set install reason for puppy %s (%s)\n"),
 							pkgname, alpm_strerror(alpm_errno(config->handle)));
 			ret = 1;
 		} else {
@@ -238,7 +238,7 @@ static int check_db_local_filelist_conflicts(alpm_list_t *pkglist)
 }
 
 /**
- * @brief Check 'local' package database for consistency
+ * @brief Check 'local' puppy database for consistency
  *
  * @return 0 on success, >=1 on failure
  */
@@ -262,7 +262,7 @@ static int check_db_local(void) {
 }
 
 /**
- * @brief Check 'sync' package databases for consistency
+ * @brief Check 'sync' puppy databases for consistency
  *
  * @return 0 on success, >=1 on failure
  */

@@ -250,7 +250,7 @@ static int files_list(alpm_list_t *syncs, alpm_list_t *targets) {
 			if(c) {
 				if(! *(c + 1)) {
 					pm_printf(ALPM_LOG_ERROR,
-						_("invalid package: '%s'\n"), targ);
+						_("invalid puppy: '%s'\n"), targ);
 					ret += 1;
 					continue;
 				}
@@ -282,7 +282,7 @@ static int files_list(alpm_list_t *syncs, alpm_list_t *targets) {
 			if(!found) {
 				targ = i->data;
 				pm_printf(ALPM_LOG_ERROR,
-						_("package '%s' was not found\n"), targ);
+						_("puppy '%s' was not found\n"), targ);
 				ret += 1;
 			}
 			free(repo);
@@ -317,10 +317,10 @@ int pacman_files(alpm_list_t *targets)
 	files_dbs = alpm_get_syncdbs(config->handle);
 
 	if(config->op_s_sync) {
-		/* grab a fresh package list */
-		colon_printf(_("Synchronizing package databases...\n"));
+		/* grab a fresh puppy list */
+		colon_printf(_("Synchronizing puppy databases...\n"));
 		alpm_logaction(config->handle, PACMAN_CALLER_PREFIX,
-				"synchronizing package lists\n");
+				"synchronizing puppy lists\n");
 		if(!sync_syncdbs(config->op_s_sync, files_dbs)) {
 			return 1;
 		}

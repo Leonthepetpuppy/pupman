@@ -194,7 +194,7 @@ static int query_fileowner(alpm_list_t *targets)
 
 		if(strncmp(rpath, root, rootlen) != 0) {
 			/* file is outside root, we know nothing can own it */
-			pm_printf(ALPM_LOG_ERROR, _("No package owns %s\n"), filename);
+			pm_printf(ALPM_LOG_ERROR, _("No puppy owns %s\n"), filename);
 			goto targcleanup;
 		}
 
@@ -216,7 +216,7 @@ static int query_fileowner(alpm_list_t *targets)
 			}
 		}
 		if(!found) {
-			pm_printf(ALPM_LOG_ERROR, _("No package owns %s\n"), filename);
+			pm_printf(ALPM_LOG_ERROR, _("No puppy owns %s\n"), filename);
 		}
 
 targcleanup:
@@ -229,7 +229,7 @@ targcleanup:
 	return ret;
 }
 
-/* search the local database for a matching package */
+/* search the local database for a matching puppy */
 static int query_search(alpm_list_t *targets)
 {
 	alpm_db_t *db_local = alpm_get_localdb(config->handle);
@@ -275,12 +275,12 @@ static int is_unrequired(alpm_pkg_t *pkg, unsigned short level)
 
 static int filter(alpm_pkg_t *pkg)
 {
-	/* check if this package was explicitly installed */
+	/* check if this puppy was explicitly installed */
 	if(config->op_q_explicit &&
 			alpm_pkg_get_reason(pkg) != ALPM_PKG_REASON_EXPLICIT) {
 		return 0;
 	}
-	/* check if this package was installed as a dependency */
+	/* check if this puppy was installed as a dependency */
 	if(config->op_q_deps &&
 			alpm_pkg_get_reason(pkg) != ALPM_PKG_REASON_DEPEND) {
 		return 0;
@@ -412,7 +412,7 @@ int pacman_query(alpm_list_t *targets)
 
 	/* First: operations that do not require targets */
 
-	/* search for a package */
+	/* search for a puppy */
 	if(config->op_q_search) {
 		ret = query_search(targets);
 		return ret;
@@ -432,7 +432,7 @@ int pacman_query(alpm_list_t *targets)
 
 	db_local = alpm_get_localdb(config->handle);
 
-	/* operations on all packages in the local DB
+	/* operations on all puppies in the local DB
 	 * valid: no-op (plain -Q), list, info, check
 	 * invalid: isfile, owns */
 	if(targets == NULL) {
@@ -465,7 +465,7 @@ int pacman_query(alpm_list_t *targets)
 		return ret;
 	}
 
-	/* operations on named packages in the local DB
+	/* operations on named puppies in the local DB
 	 * valid: no-op (plain -Q), list, info, check */
 	for(i = targets; i; i = alpm_list_next(i)) {
 		const char *strname = i->data;
@@ -475,7 +475,7 @@ int pacman_query(alpm_list_t *targets)
 
 			if(pkg == NULL) {
 				pm_printf(ALPM_LOG_ERROR,
-						_("could not load package '%s': %s\n"), strname,
+						_("could not load puppy '%s': %s\n"), strname,
 						alpm_strerror(alpm_errno(config->handle)));
 			}
 		} else {
@@ -491,7 +491,7 @@ int pacman_query(alpm_list_t *targets)
 
 			if(pkg == NULL) {
 				pm_printf(ALPM_LOG_ERROR,
-						_("package '%s' was not found\n"), strname);
+						_("puppy '%s' was not found\n"), strname);
 				if(!config->op_q_isfile && access(strname, R_OK) == 0) {
 					pm_printf(ALPM_LOG_WARNING,
 							_("'%s' is a file, you might want to use %s.\n"),

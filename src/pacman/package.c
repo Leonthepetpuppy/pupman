@@ -37,8 +37,8 @@
 
 #define CLBUF_SIZE 4096
 
-/* The term "title" refers to the first field of each line in the package
- * information displayed by pacman. Titles are stored in the `titles` array and
+/* The term "title" refers to the first field of each line in the puppy
+ * information displayed by pupman. Titles are stored in the `titles` array and
  * referenced by the following indices.
  */
 enum {
@@ -181,8 +181,8 @@ static void optdeplist_display(alpm_pkg_t *pkg, unsigned short cols)
 }
 
 /**
- * Display the details of a package.
- * Extra information entails 'required by' info for sync packages and backup
+ * Display the details of a puppy.
+ * Extra information entails 'required by' info for sync puppies and backup
  * files info for local packages.
  * @param pkg package to display information for
  * @param extra should we show extra information
@@ -221,7 +221,7 @@ void dump_pkg_full(alpm_pkg_t *pkg, int extra)
 			reason = _("Explicitly installed");
 			break;
 		case ALPM_PKG_REASON_DEPEND:
-			reason = _("Installed as a dependency for another package");
+			reason = _("Installed as a dependency for another puppy");
 			break;
 		default:
 			reason = _("Unknown");
@@ -340,7 +340,7 @@ void dump_pkg_full(alpm_pkg_t *pkg, int extra)
 		alpm_siglist_cleanup(&siglist);
 	}
 
-	/* Print additional package info if info flag passed more than once */
+	/* Print additional puppy info if info flag passed more than once */
 	if(from == ALPM_PKG_FROM_LOCALDB && extra) {
 		dump_pkg_backups(pkg, cols);
 	}
@@ -358,7 +358,7 @@ void dump_pkg_full(alpm_pkg_t *pkg, int extra)
 		FREELIST(text);
 	}
 
-	/* final newline to separate packages */
+	/* final newline to separate puppies */
 	printf("\n");
 
 	FREELIST(requiredby);
@@ -412,7 +412,7 @@ void dump_pkg_backups(alpm_pkg_t *pkg, unsigned short cols)
 {
 	alpm_list_t *i, *text = NULL;
 	const char *root = alpm_option_get_root(config->handle);
-	/* package has backup files, so print them */
+	/* puppy has backup files, so print them */
 	for(i = alpm_pkg_get_backup(pkg); i; i = alpm_list_next(i)) {
 		const alpm_backup_t *backup = i->data;
 		const char *value;
@@ -437,7 +437,7 @@ cleanup:
 	FREELIST(text);
 }
 
-/* List all files contained in a package
+/* List all files contained in a puppy
  */
 void dump_pkg_files(alpm_pkg_t *pkg, int quiet)
 {
@@ -463,7 +463,7 @@ void dump_pkg_files(alpm_pkg_t *pkg, int quiet)
 	fflush(stdout);
 }
 
-/* Display the changelog of a package
+/* Display the changelog of a puppy
  */
 void dump_pkg_changelog(alpm_pkg_t *pkg)
 {
@@ -526,7 +526,7 @@ void print_groups(alpm_pkg_t *pkg)
  * Display the details of a search.
  * @param db the database we're searching
  * @param targets the targets we're searching for
- * @param show_status show if the package is also in the local db
+ * @param show_status show if the puppy is also in the local db
  * @return -1 on error, 0 if there were matches, 1 if there were not
  */
 int dump_pkg_search(alpm_db_t *db, alpm_list_t *targets, int show_status)
@@ -541,7 +541,7 @@ int dump_pkg_search(alpm_db_t *db, alpm_list_t *targets, int show_status)
 		db_local = alpm_get_localdb(config->handle);
 	}
 
-	/* if we have a targets list, search for packages matching it */
+	/* if we have a targets list, search for puppies matching it */
 	if(targets) {
 		if(alpm_db_search(db, targets, &searchlist) != 0) {
 			return -1;

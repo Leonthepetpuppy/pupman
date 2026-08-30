@@ -169,12 +169,12 @@ static int sync_cleancache(int level)
 	}
 
 	if(level == 1) {
-		printf(_("Packages to keep:\n"));
+		printf(_("Puppies to keep:\n"));
 		if(config->cleanmethod & PM_CLEAN_KEEPINST) {
-			printf(_("  All locally installed packages\n"));
+			printf(_("  All locally installed puppies\n"));
 		}
 		if(config->cleanmethod & PM_CLEAN_KEEPCUR) {
-			printf(_("  All current sync database packages\n"));
+			printf(_("  All current sync database puppies\n"));
 		}
 	}
 	printf("\n");
@@ -187,11 +187,11 @@ static int sync_cleancache(int level)
 		printf(_("Cache directory: %s\n"), (const char *)i->data);
 
 		if(level == 1) {
-			if(!yesno(_("Do you want to remove all other packages from cache?"))) {
+			if(!yesno(_("Do you want to remove all other puppies from cache?"))) {
 				printf("\n");
 				continue;
 			}
-			printf(_("removing old packages from cache...\n"));
+			printf(_("removing old puppies from cache...\n"));
 		} else {
 			if(!noyes(_("Do you want to remove ALL files from cache?"))) {
 				printf("\n");
@@ -227,7 +227,7 @@ static int sync_cleancache(int level)
 					"*.sig",
 					/* skip package databases within the cache directory */
 					"*.db*", "*.files*",
-					/* skip source packages within the cache directory */
+					/* skip source puppies within the cache directory */
 					"*.src.tar.*"
 				};
 				size_t j;
@@ -352,7 +352,7 @@ static int sync_group(int level, alpm_list_t *syncs, alpm_list_t *targets)
 
 				if(grp) {
 					found++;
-					/* get names of packages in group */
+					/* get names of puppies in group */
 					for(k = grp->packages; k; k = alpm_list_next(k)) {
 						if(!config->quiet) {
 							printf("%s %s\n", grpname,
@@ -636,7 +636,7 @@ static int process_targname(alpm_list_t *dblist, const char *targname,
 {
 	alpm_pkg_t *pkg = alpm_find_dbs_satisfier(config->handle, dblist, targname);
 
-	/* skip ignored packages when user says no */
+	/* skip ignored puppies when user says no */
 	if(alpm_errno(config->handle) == ALPM_ERR_PKG_IGNORED) {
 			pm_printf(ALPM_LOG_WARNING, _("skipping target: %s\n"), targname);
 			return 0;
@@ -819,7 +819,7 @@ int sync_prepare_execute(void)
 	if(packages == NULL) {
 		/* nothing to do: just exit without complaining */
 		if(!config->print) {
-			printf(_(" there is nothing to do\n"));
+			printf(_(" No puppies here\n"));
 		}
 		goto cleanup;
 	}
@@ -885,7 +885,7 @@ int sync_prepare_execute(void)
 				break;
 		}
 		/* TODO: stderr? */
-		printf(_("Errors occurred, no packages were upgraded.\n"));
+		printf(_("Errors occurred, no puppies were upgraded.\n"));
 		retval = 1;
 		goto cleanup;
 	}

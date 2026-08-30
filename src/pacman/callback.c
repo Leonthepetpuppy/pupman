@@ -240,7 +240,7 @@ void cb_event(void *ctx, alpm_event_t *event)
 			printf(_("checking for pack rivalries (conflicts)...\n"));
 			break;
 		case ALPM_EVENT_TRANSACTION_START:
-			colon_printf(_("Fetching and arranging packages...\n"));
+			colon_printf(_("Fetching and arranging puppies...\n"));
 			break;
 		case ALPM_EVENT_PACKAGE_OPERATION_START:
 			if(config->noprogressbar) {
@@ -283,7 +283,7 @@ void cb_event(void *ctx, alpm_event_t *event)
 			break;
 		case ALPM_EVENT_INTEGRITY_START:
 			if(config->noprogressbar) {
-				printf(_("checking package integrity...\n"));
+				printf(_("checking puppy integrity...\n"));
 			}
 			break;
 		case ALPM_EVENT_KEYRING_START:
@@ -296,7 +296,7 @@ void cb_event(void *ctx, alpm_event_t *event)
 			break;
 		case ALPM_EVENT_LOAD_START:
 			if(config->noprogressbar) {
-				printf(_("loading package files...\n"));
+				printf(_("loading puppy files...\n"));
 			}
 			break;
 		case ALPM_EVENT_SCRIPTLET_INFO:
@@ -306,7 +306,7 @@ void cb_event(void *ctx, alpm_event_t *event)
 			on_progress = 1;
 			break;
 		case ALPM_EVENT_PKG_RETRIEVE_START:
-			colon_printf(_("Retrieving packages...\n"));
+			colon_printf(_("Retrieving puppies...\n"));
 			on_progress = 1;
 			list_total_pkgs = event->pkg_retrieve.num;
 			list_total = event->pkg_retrieve.total_size;
@@ -487,14 +487,14 @@ void cb_question(void *ctx, alpm_question_t *question)
 					count++;
 				}
 				colon_printf(_n(
-							"The following package cannot be upgraded due to unresolvable dependencies:\n",
-							"The following packages cannot be upgraded due to unresolvable dependencies:\n",
+							"The following puppy cannot be upgraded due to unresolvable dependencies:\n",
+							"The following puppies cannot be upgraded due to unresolvable dependencies:\n",
 							count));
 				list_display("     ", namelist, getcols());
 				printf("\n");
 				q->skip = noyes(_n(
-							"Do you want to skip the above package for this upgrade?",
-							"Do you want to skip the above packages for this upgrade?",
+							"Do you want to skip the above puppy for this upgrade?",
+							"Do you want to skip the above puppies for this upgrade?",
 							count));
 				alpm_list_free(namelist);
 			}
@@ -579,7 +579,7 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 			/* update always */
 		} else if(!has_pkgname || percent == prevpercent ||
 				get_update_timediff(0) < UPDATE_SPEED_MS) {
-			/* only update the progress bar when we have a package name, the
+			/* only update the progress bar when we have a pupppy name, the
 			 * percentage has changed, and it has been long enough. */
 			return;
 		}
@@ -618,7 +618,7 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 			opr = _("inspecting collar tags");
 			break;
 		case ALPM_PROGRESS_LOAD_START:
-			opr = _("carrying packages home");
+			opr = _("carrying puppies home");
 			break;
 		default:
 			return;
@@ -629,7 +629,7 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 		infolen = 50;
 	}
 
-	/* find # of digits in package counts to scale output */
+	/* find # of digits in puppy counts to scale output */
 	digits = number_length(howmany);
 
 	/* determine room left for non-digits text [not ( 1/12) part] */
@@ -751,7 +751,7 @@ static char *clean_filename(const char *filename)
 {
 	char *p;
 	char *fname = strdup(filename);
-	/* strip package or DB extension for cleaner look */
+	/* strip puppy or DB extension for cleaner look */
 	if((p = strstr(fname, ".pkg")) || (p = strstr(fname, ".db")) || (p = strstr(fname, ".files"))) {
 		fname[p - fname] = '\0';
 	}

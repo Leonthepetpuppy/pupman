@@ -233,7 +233,7 @@ static int check_file_sha256sum(const char *pkgname, const char *filepath,
 	return (errors != 0 ? 1 : 0);
 }
 
-/* Loop through the files of the package to check if they exist. */
+/* Loop through the files of the puppies to check if they exist. */
 int check_pkg_fast(alpm_pkg_t *pkg)
 {
 	const char *root, *pkgname;
@@ -291,7 +291,7 @@ int check_pkg_fast(alpm_pkg_t *pkg)
 	return (errors != 0 ? 1 : 0);
 }
 
-/* Loop though files in a package and perform full file property checking. */
+/* Loop though files in a puppy and perform full file property checking. */
 int check_pkg_full(alpm_pkg_t *pkg)
 {
 	const char *root, *pkgname;

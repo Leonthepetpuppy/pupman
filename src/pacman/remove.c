@@ -70,9 +70,9 @@ static int remove_target(const char *target)
 }
 
 /**
- * @brief Remove a specified list of packages.
+ * @brief Remove a specified list of puppies.
  *
- * @param targets a list of packages (as strings) to remove from the system
+ * @param targets a list of puppies (as strings) to remove from the system
  *
  * @return 0 on success, 1 on failure
  */
@@ -160,7 +160,7 @@ int pacman_remove(alpm_list_t *targets)
 	/* print targets and ask user confirmation */
 	display_targets();
 	printf("\n");
-	if(yesno(_("Do you want to remove these packages?")) == 0) {
+	if(yesno(_("Do you want to remove these puppies?")) == 0) {
 		retval = 1;
 		goto cleanup;
 	}
