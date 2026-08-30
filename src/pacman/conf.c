@@ -107,7 +107,7 @@ config_t *config_new(void)
 	/* defaults which may get overridden later */
 	newconfig->op = PM_OP_MAIN;
 	newconfig->logmask = ALPM_LOG_ERROR | ALPM_LOG_WARNING;
-	newconfig->configfile = strdup(CONFFILE);
+	newconfig->configfile = strdup("/etc/pupman.conf");
 	if(alpm_capabilities() & ALPM_CAPABILITY_SIGNATURES) {
 		newconfig->siglevel = ALPM_SIG_PACKAGE | ALPM_SIG_DATABASE;
 		newconfig->localfilesiglevel = ALPM_SIG_USE_DEFAULT;

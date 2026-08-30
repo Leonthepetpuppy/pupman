@@ -252,4 +252,9 @@ int config_add_architecture(char *arch);
 int parseconfig(const char *file);
 int parseconfigfile(const char *file);
 int setdefaults(config_t *c);
+
+#ifndef CONFFILE
+#define CONFFILE "/etc/pupman.conf"
+#endif
+
 #endif /* PM_CONF_H */
